@@ -1,4 +1,5 @@
 ActiveAdmin.register Episode do
+  permit_params :title, :slug, :url
 
 
   # See permitted parameters documentation:
