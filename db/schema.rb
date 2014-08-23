@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140823035744) do
+ActiveRecord::Schema.define(version: 20140823035807) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -61,6 +61,47 @@ ActiveRecord::Schema.define(version: 20140823035744) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+
+  create_table "episodes", force: true do |t|
+    t.integer  "season_id"
+    t.string   "title"
+    t.string   "slug"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "episodes", ["season_id"], name: "index_episodes_on_season_id"
+
+  create_table "podcasts", force: true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "podcasts", ["user_id"], name: "index_podcasts_on_user_id"
+
+  create_table "profiles", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "user_id"
+    t.text     "bio"
+    t.string   "location"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
+
+  create_table "seasons", force: true do |t|
+    t.integer  "podcast_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "seasons", ["podcast_id"], name: "index_seasons_on_podcast_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
