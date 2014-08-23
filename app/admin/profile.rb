@@ -1,4 +1,5 @@
 ActiveAdmin.register Profile do
+  permit_params :first_name, :last_name, :bio, :location
 
 
   # See permitted parameters documentation:
