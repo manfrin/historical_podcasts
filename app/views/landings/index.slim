@@ -1,0 +1,13 @@
+.col-xs-12.col-sm-9
+	h1 Historical Podcasts
+	.row
+		- @podcasts.each do |podcast|
+			h2=podcast.name
+			- podcast.seasons.each do |season|
+				h3 Season
+				-season.episodes.each do |ep|
+					div.col-6.col-xs-6.col-sm-3
+	  					h4=ep.title
+	  					h6=ep.pub_date
+	  					p=ep.description
+	  					=link_to('Listen', ep.external_link)
